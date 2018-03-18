@@ -19,6 +19,8 @@ class Splash extends Component {
           //TODO
           const userObject = JSON.parse(user);
           this.props.loggedIn(userObject);
+          this.props.navigation.navigate('Home');
+          console.log("user info", user);
         }else {
           this.props.navigation.navigate('Login');
         }
@@ -28,14 +30,14 @@ class Splash extends Component {
 
   componentWillReceiveProps(nextProps){
     if (nextProps.user){
-      this.props.navigation.navigate('Homne');
+      this.props.navigation.navigate('Home');
     }
   }
 
   render() {
     return (
       <View style={ styles.container }>
-      	 <ActivityIndicator size="large" color="#5c6bc0" />
+      	 <ActivityIndicator size="large" color="red" />
       </View>
     );
   }
@@ -51,12 +53,5 @@ const styles = StyleSheet.create({
 });
 
 
-const mapStateToProps = state => {
-  return {
-    error: state.auth.error,
-    loading: state.auth.loading,
-    user: state.auth.user,
-  }
-}
 
 export default connect(null, { loggedIn })(Splash);

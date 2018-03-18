@@ -1,23 +1,24 @@
 'use strict';
 
 import React, { Component } from 'react';
-
 import {
-  StyleSheet,
   View,
+  Text,
 } from 'react-native';
+
+import StyleSheet from '../../styles/homeStyles'
 
 class Home extends Component {
   render() {
     return (
-      <View />
+      <View style={homeStyles.container}>
+      	<Header
+          centerComponent={{ text: 'Home', style: {color: 'black', fontSize: 20} }}
+          backgroundColor='#66bb6a'
+        />
+      </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-});
-
 
 export default Home;

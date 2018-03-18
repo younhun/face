@@ -9,7 +9,7 @@ import { AsyncStorage } from 'react-native';
 
 const DERAULT_AVATAR = 'https://www.google.co.kr/search?q=AVATAR&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi2rpf3rPXZAhVKTrwKHeRfAAwQ_AUICigB&biw=1920&bih=983#imgrc=JBz5QANryrkVjM:';
 
-export default login = ({ username, avatar }) => {
+export const login = ({ username, avatar }) => {
 	const userAvatar = avatar.length === 0 ? DERAULT_AVATAR : avatar;
 	return (dispatch) => {
 		dispatch({ type: LOGIN_ATTEMP });
@@ -32,6 +32,7 @@ export default login = ({ username, avatar }) => {
 	}
 };
 
+//로그인 정보가 db에 저장이 되면 Asyncstorage에 유저 정보 저장
 const finishLogin = (dispatch, user) => {
 	AsyncStorage.setItem('user_info', JSON.stringify(user))
 		.then(() => {
