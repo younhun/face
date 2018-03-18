@@ -1,25 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-import Timer from './src/components/Timer';
-
-import reducer from './src/reducer';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux'; //state를 복사해오기 위함
+import ReduxThunk from 'redux-thunk';
 
-let store = createStore(reducer); //store 생성
-console.log(store.getState());
+import reducers from './src/reducers';
+import Routes from './src/Routes';
 
 export default class App extends React.Component {
   render() {
     return (
-        <Provider store={store}>
-          <Timer />
-        </Provider>
-        
-      
-        
-    
+      <Provider store={ createStore(reducers, {}, applyMiddleware(ReduxThunk)) }>
+      <Routes />
+      </Provider>
     );
   }
 }
